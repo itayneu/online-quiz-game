@@ -1,23 +1,20 @@
 {
   "files": {
-    "main.css": "/online-quiz-game/static/css/main.ad9d648d.chunk.css",
-    "main.js": "/online-quiz-game/static/js/main.d900b22b.chunk.js",
-    "main.js.map": "/online-quiz-game/static/js/main.d900b22b.chunk.js.map",
+    "main.js": "/online-quiz-game/static/js/main.129df57e.chunk.js",
+    "main.js.map": "/online-quiz-game/static/js/main.129df57e.chunk.js.map",
     "runtime-main.js": "/online-quiz-game/static/js/runtime-main.7330471e.js",
     "runtime-main.js.map": "/online-quiz-game/static/js/runtime-main.7330471e.js.map",
     "static/css/2.f4c56af9.chunk.css": "/online-quiz-game/static/css/2.f4c56af9.chunk.css",
-    "static/js/2.dd7160a6.chunk.js": "/online-quiz-game/static/js/2.dd7160a6.chunk.js",
-    "static/js/2.dd7160a6.chunk.js.map": "/online-quiz-game/static/js/2.dd7160a6.chunk.js.map",
+    "static/js/2.2005ab1d.chunk.js": "/online-quiz-game/static/js/2.2005ab1d.chunk.js",
+    "static/js/2.2005ab1d.chunk.js.map": "/online-quiz-game/static/js/2.2005ab1d.chunk.js.map",
     "index.html": "/online-quiz-game/index.html",
     "static/css/2.f4c56af9.chunk.css.map": "/online-quiz-game/static/css/2.f4c56af9.chunk.css.map",
-    "static/css/main.ad9d648d.chunk.css.map": "/online-quiz-game/static/css/main.ad9d648d.chunk.css.map",
-    "static/js/2.dd7160a6.chunk.js.LICENSE.txt": "/online-quiz-game/static/js/2.dd7160a6.chunk.js.LICENSE.txt"
+    "static/js/2.2005ab1d.chunk.js.LICENSE.txt": "/online-quiz-game/static/js/2.2005ab1d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7330471e.js",
     "static/css/2.f4c56af9.chunk.css",
-    "static/js/2.dd7160a6.chunk.js",
-    "static/css/main.ad9d648d.chunk.css",
-    "static/js/main.d900b22b.chunk.js"
+    "static/js/2.2005ab1d.chunk.js",
+    "static/js/main.129df57e.chunk.js"
   ]
 }
