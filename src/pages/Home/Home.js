@@ -1,39 +1,65 @@
 import React, { useState } from "react";
-import Quiz from "../../components/Quiz";
 import Text from "../../components/Text";
 import Question from "../../components/Question";
+import NewGame from "../../components/NewGame";
 import { useQuestionsFetch } from "../../hooks";
+import { decode } from "he";
 import * as S from "./style";
 
 const Home = () => {
-  const { questions, fetchQuestions } = useQuestionsFetch();
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
+  const [startQuiz, setStartQuiz] = useState(false);
+  const [endQuiz, setEndQuiz] = useState(false);
 
-  let correct_answer = questions[currentQuestion]?.correct_answer;
-  let incorrect_answers = questions[currentQuestion]?.incorrect_answers;
-  let answers = [];
-  if (incorrect_answers !== undefined) {
-    answers = [correct_answer, ...incorrect_answers];
-    let correct_pos = Math.floor(Math.random() * answers.length);
-    let tmp = answers[correct_pos];
-    answers[correct_pos] = answers[0];
+  const { questions } = useQuestionsFetch(startQuiz);
+  let question = "",
+    answers = [],
+    correctAnswer = "";
+
+  if (questions.length > 0 && currentQuestion < questions.length) {
+    question = decode(questions[currentQuestion]?.question);
+    correctAnswer = questions[currentQuestion]?.correct_answer;
+    let incorrectAnswers = questions[currentQuestion]?.incorrect_answers;
+    answers = [correctAnswer, ...incorrectAnswers];
+    answers.forEach((answer, index) => {
+      answers[index] = decode(answer);
+    });
+    let correctIndex = Math.floor(Math.random() * answers.length);
+    let tmp = answers[correctIndex];
+    answers[correctIndex] = answers[0];
     answers[0] = tmp;
+    console.log(question);
   }
 
-  const renderQuestion = () => {
-    if (questions !== undefined && currentQuestion < questions?.length) {
+  console.log(questions);
+  const render = () => {
+    if (startQuiz) {
       return (
         <Question
-          question={questions[currentQuestion]?.question}
+          currentQuestion={currentQuestion}
+          question={question}
           answers={answers}
-          correct_answer={correct_answer}
+          numberOfQuestions={questions.length}
+          correctAnswer={correctAnswer}
           setCurrentQuestion={setCurrentQuestion}
+          score={score}
           setScore={setScore}
+          setStartQuiz={setStartQuiz}
+          setEndQuiz={setEndQuiz}
         />
       );
-    } else return;
+    } else
+      return (
+        <NewGame
+          setStartQuiz={setStartQuiz}
+          setEndQuiz={setEndQuiz}
+          setCurrentQuestion={setCurrentQuestion}
+          score={score}
+          setScore={setScore}
+          endQuiz={endQuiz}
+        />
+      );
   };
 
   return (
@@ -44,8 +70,7 @@ const Home = () => {
             Online Quiz Game
           </Text>
         </S.Header>
-        Score: {score}
-        {renderQuestion()}
+        {render()}
       </S.Content>
     </S.Home>
   );

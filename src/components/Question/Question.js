@@ -8,26 +8,62 @@ import "./Question.css";
 import { decode } from "he";
 
 const Question = ({
+  currentQuestion,
   question,
   answers,
-  correct_answer,
+  numberOfQuestions,
+  correctAnswer,
   setCurrentQuestion,
+  score,
   setScore,
+  setStartQuiz,
+  setEndQuiz,
 }) => {
   const [timeLeft, setTimeLeft] = useState(20);
 
   const nextQuestion = () => {
-    setCurrentQuestion((currentQuestion) => currentQuestion + 1);
-    setTimeLeft(20);
+    if (currentQuestion === numberOfQuestions - 1) {
+      setStartQuiz(false);
+      setEndQuiz(true);
+    }
+
+    setTimeout(() => {
+      setCurrentQuestion((currentQuestion) => currentQuestion + 1);
+      setTimeLeft(20);
+    }, 750);
   };
 
   const handleClick = (answer) => {
-    if (answer === correct_answer) setScore((currentScore) => currentScore + 1);
+    if (answer === correctAnswer) {
+      toast.success("Correct answer!", {
+        position: "top-left",
+        autoClose: 1000,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      setScore((currentScore) => currentScore + 1);
+    } else {
+      toast.error(`Incorrect answer, Correct answer is ${correctAnswer}`, {
+        position: "top-left",
+        autoClose: 1000,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+    }
+    console.log("currentQuestion", currentQuestion);
+    console.log("numberOfQuestions", numberOfQuestions - 1);
+
     nextQuestion();
   };
 
   useEffect(() => {
     if (timeLeft === 0) {
+      toast.warn("Time is up", {
+        position: "top-left",
+        autoClose: 1000,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
       nextQuestion();
     }
 
@@ -41,26 +77,29 @@ const Question = ({
   }, [timeLeft]);
 
   return (
-    <div>
+    <S.Question>
       <ToastContainer position="top-center" hideProgressBar={true} />
+      <Text size="14px">Score: {score}</Text>
+      <Text size="14px">Time: {timeLeft}</Text>
       <S.Header>
         <Text size="30px" bold>
           {decode(question)}
         </Text>
       </S.Header>
-      {answers.map((answer) => {
-        return (
-          <S.Button>
-            <Button
-              label={decode(answer)}
-              variant="contained"
-              onClick={() => handleClick(answer)}
-            />
-          </S.Button>
-        );
-      })}
-      {timeLeft}
-    </div>
+      <S.Answers>
+        {answers.map((answer) => {
+          return (
+            <S.Button>
+              <Button
+                label={decode(answer)}
+                variant="outlined"
+                onClick={() => handleClick(answer)}
+              />
+            </S.Button>
+          );
+        })}
+      </S.Answers>
+    </S.Question>
   );
 };
 

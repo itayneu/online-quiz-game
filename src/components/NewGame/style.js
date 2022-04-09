@@ -6,15 +6,10 @@ export const Header = styled.div`
   margin: 20px;
 `;
 
-export const Question = styled.div`
+export const NewGame = styled.div`
   flex-direction: column;
   width: 1000px;
   text-align: center;
-`;
-
-export const Answers = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export const Button = styled.div`
