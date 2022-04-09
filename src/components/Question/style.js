@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const Header = styled.div`
   display: flex;
+  margin: 30px;
 `;
 
 export const UserList = styled.div`
   display: flex;
   flex-direction: column;
+  width: 700px;
 `;
 
 export const List = styled.div`
@@ -47,6 +49,7 @@ export const SpinnerWrapper = styled.div`
 export const Button = styled.div`
   display: flex;
   justify-content: center;
+  margin: 10px;
 `;
 
 export const RadioButtonsGroup = styled.div`

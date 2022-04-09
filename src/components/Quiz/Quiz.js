@@ -11,7 +11,7 @@ const Quiz = ({ questions }) => {
   let correct_answer = questions[currentQuestion]?.correct_answer;
   let incorrect_answers = questions[currentQuestion]?.incorrect_answers;
   let answers = [];
-  if (incorrect_answers != undefined) {
+  if (incorrect_answers !== undefined) {
     answers = [correct_answer, ...incorrect_answers];
     let correct_pos = Math.floor(Math.random() * answers.length);
     let tmp = answers[correct_pos];
@@ -20,7 +20,7 @@ const Quiz = ({ questions }) => {
   }
 
   const renderQuestion = () => {
-    if (questions != undefined && currentQuestion < questions?.length) {
+    if (questions !== undefined && currentQuestion < questions?.length) {
       return (
         <Question
           question={questions[currentQuestion]?.question}
@@ -34,15 +34,10 @@ const Quiz = ({ questions }) => {
   };
 
   return (
-    <S.UserList>
-      <S.Header>
-        <Text size="64px" bold>
-          Online Quiz Game
-        </Text>
-      </S.Header>
+    <div>
       {renderQuestion()}
       Score: {score}
-    </S.UserList>
+    </div>
   );
 };
 
