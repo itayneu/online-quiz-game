@@ -1,10 +1,10 @@
 {
-  "homepage": "http://itayneu.github.io/PplFinder",
-  "name": "ppl-finder",
-  "version": "1.0.7",
+  "homepage": "http://itayneu.github.io/online-quiz-game",
+  "name": "online-quiz-game",
+  "version": "1.0.0",
   "bin": "./bin/cli.js",
   "license": "MIT",
-  "repository": "https://github.com/powerlink/PplFinder",
+  "repository": "https://github.com/itayneu/online-quiz-game",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",

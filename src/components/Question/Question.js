@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Text from "../Text";
-import Button from "../Button";
+import { decode } from "he";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Text from "../Text";
+import Button from "../Button";
 import * as S from "./style";
-import "./Question.css";
-import { decode } from "he";
 
 const Question = ({
   currentQuestion,
@@ -50,8 +49,6 @@ const Question = ({
         pauseOnHover: true,
       });
     }
-    console.log("currentQuestion", currentQuestion);
-    console.log("numberOfQuestions", numberOfQuestions - 1);
 
     nextQuestion();
   };

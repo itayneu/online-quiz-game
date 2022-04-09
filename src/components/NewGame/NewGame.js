@@ -1,6 +1,7 @@
 import React from "react";
 import Text from "../Text";
 import Button from "../Button";
+import RadioButtonsGroup from "../RadioButtonsGroup";
 import * as S from "./style";
 
 const NewGame = ({
@@ -10,13 +11,35 @@ const NewGame = ({
   score,
   setScore,
   endQuiz,
+  numberOfQuestions,
+  setNumberOfQuestions,
+  difficulty,
+  setDifficulty,
 }) => {
+  const questionsRadio = [
+    { value: "5", label: "5" },
+    { value: "10", label: "10" },
+    { value: "25", label: "25" },
+    { value: "50", label: "50" },
+  ];
+  const difficultyRadio = [
+    { value: "mixed", label: "Mixed" },
+    { value: "easy", label: "Easy" },
+    { value: "medium", label: "Medium" },
+    { value: "hard", label: "Hard" },
+  ];
+
   const render = () => {
     if (endQuiz) {
       return (
         <div>
           <Text size="30px" bold>
-            Your score is {score}
+            You answered {score} questions out of {numberOfQuestions} correctly!
+          </Text>
+          <Text size="30px" bold>
+            {score / numberOfQuestions > 0.5
+              ? "Great Job!"
+              : "Better Luck Next Time..."}
           </Text>
         </div>
       );
@@ -31,6 +54,22 @@ const NewGame = ({
   return (
     <S.NewGame>
       <S.Header>{render()}</S.Header>
+      <Text size="18px">Number of Questions:</Text>
+      <S.RadioButtonsGroup>
+        <RadioButtonsGroup
+          onChange={setNumberOfQuestions}
+          value={numberOfQuestions}
+          radioButtons={questionsRadio}
+        />
+      </S.RadioButtonsGroup>
+      <Text size="18px">Difficulty:</Text>
+      <S.RadioButtonsGroup>
+        <RadioButtonsGroup
+          onChange={setDifficulty}
+          value={difficulty}
+          radioButtons={difficultyRadio}
+        />
+      </S.RadioButtonsGroup>
       <S.Button>
         <Button
           label="Click to start a new game"

@@ -12,6 +12,11 @@ export const NewGame = styled.div`
   text-align: center;
 `;
 
+export const RadioButtonsGroup = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Button = styled.div`
   display: flex;
   justify-content: center;

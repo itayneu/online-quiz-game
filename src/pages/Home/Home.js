@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Text from "../../components/Text";
-import Question from "../../components/Question";
-import NewGame from "../../components/NewGame";
-import { useQuestionsFetch } from "../../hooks";
 import { decode } from "he";
+import Text from "../../components/Text";
+import NewGame from "../../components/NewGame";
+import Question from "../../components/Question";
+import { useQuestionsFetch } from "../../hooks";
 import * as S from "./style";
 
 const Home = () => {
@@ -11,8 +11,14 @@ const Home = () => {
   const [score, setScore] = useState(0);
   const [startQuiz, setStartQuiz] = useState(false);
   const [endQuiz, setEndQuiz] = useState(false);
+  const [numberOfQuestions, setNumberOfQuestions] = useState("5");
+  const [difficulty, setDifficulty] = useState("mixed");
 
-  const { questions } = useQuestionsFetch(startQuiz);
+  const { questions } = useQuestionsFetch(
+    startQuiz,
+    numberOfQuestions,
+    difficulty
+  );
   let question = "",
     answers = [],
     correctAnswer = "";
@@ -20,19 +26,17 @@ const Home = () => {
   if (questions.length > 0 && currentQuestion < questions.length) {
     question = decode(questions[currentQuestion]?.question);
     correctAnswer = questions[currentQuestion]?.correct_answer;
-    let incorrectAnswers = questions[currentQuestion]?.incorrect_answers;
-    answers = [correctAnswer, ...incorrectAnswers];
+    answers = [correctAnswer, ...questions[currentQuestion]?.incorrect_answers];
     answers.forEach((answer, index) => {
       answers[index] = decode(answer);
     });
+
     let correctIndex = Math.floor(Math.random() * answers.length);
     let tmp = answers[correctIndex];
     answers[correctIndex] = answers[0];
     answers[0] = tmp;
-    console.log(question);
   }
 
-  console.log(questions);
   const render = () => {
     if (startQuiz) {
       return (
@@ -58,6 +62,10 @@ const Home = () => {
           score={score}
           setScore={setScore}
           endQuiz={endQuiz}
+          numberOfQuestions={numberOfQuestions}
+          setNumberOfQuestions={setNumberOfQuestions}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
         />
       );
   };

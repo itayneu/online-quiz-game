@@ -16,14 +16,19 @@ const RadioButtonsGroup = ({ onChange, value, radioButtons }) => {
           row
           aria-labelledby="demo-controlled-radio-buttons-group"
           name="controlled-radio-buttons-group"
-          defaultValue={value}
+          defaultValue={value ? value : ""}
           onChange={handleChange}
         >
           {radioButtons.map((button) => {
-          return (
-            <FormControlLabel value={button.value} control={<Radio color="primary" />} label={button.label} />
-          );
-        })}
+            return (
+              <FormControlLabel
+                key={button.value}
+                value={button.value}
+                control={<Radio color="primary" />}
+                label={button.label}
+              />
+            );
+          })}
         </RadioGroup>
       </FormControl>
     </S.RadioButtonsGroup>
