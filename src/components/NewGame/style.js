@@ -18,7 +18,6 @@ export const RadioButtonsGroup = styled.div`
 `;
 
 export const Button = styled.div`
-  display: flex;
   justify-content: center;
   margin: 10px;
   flex-direction: column;

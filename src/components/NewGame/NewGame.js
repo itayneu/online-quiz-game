@@ -1,4 +1,6 @@
 import React from "react";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 import Text from "../Text";
 import Button from "../Button";
 import RadioButtonsGroup from "../RadioButtonsGroup";
@@ -16,6 +18,7 @@ const NewGame = ({
   difficulty,
   setDifficulty,
 }) => {
+  const { width, height } = useWindowSize();
   const questionsRadio = [
     { value: "5", label: "5" },
     { value: "10", label: "10" },
@@ -41,6 +44,7 @@ const NewGame = ({
               ? "Great Job!"
               : "Better Luck Next Time..."}
           </Text>
+          <Confetti width={width} height={height} />
         </div>
       );
     } else
@@ -54,7 +58,7 @@ const NewGame = ({
   return (
     <S.NewGame>
       <S.Header>{render()}</S.Header>
-      <Text size="18px">Number of Questions:</Text>
+      <Text size="16px">Number of Questions:</Text>
       <S.RadioButtonsGroup>
         <RadioButtonsGroup
           onChange={setNumberOfQuestions}
@@ -62,7 +66,7 @@ const NewGame = ({
           radioButtons={questionsRadio}
         />
       </S.RadioButtonsGroup>
-      <Text size="18px">Difficulty:</Text>
+      <Text size="16px">Difficulty:</Text>
       <S.RadioButtonsGroup>
         <RadioButtonsGroup
           onChange={setDifficulty}
@@ -72,8 +76,8 @@ const NewGame = ({
       </S.RadioButtonsGroup>
       <S.Button>
         <Button
-          label="Click to start a new game"
-          variant="outlined"
+          label="Start Game"
+          variant="contained"
           onClick={() => {
             setStartQuiz(true);
             setScore(0);

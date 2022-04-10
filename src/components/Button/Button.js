@@ -17,6 +17,7 @@ const Button = ({
       disabled={disabled}
       size={size}
       variant={variant}
+      style={{ textTransform: "none" }}
     >
       {label}
     </MuiButton>

@@ -16,7 +16,7 @@ const RadioButtonsGroup = ({ onChange, value, radioButtons }) => {
           row
           aria-labelledby="demo-controlled-radio-buttons-group"
           name="controlled-radio-buttons-group"
-          defaultValue={value ? value : ""}
+          defaultValue={value}
           onChange={handleChange}
         >
           {radioButtons.map((button) => {

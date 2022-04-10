@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { decode } from "he";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { decode } from "he";
 import Text from "../Text";
 import Button from "../Button";
 import * as S from "./style";
@@ -76,10 +76,10 @@ const Question = ({
   return (
     <S.Question>
       <ToastContainer position="top-center" hideProgressBar={true} />
-      <Text size="14px">Score: {score}</Text>
-      <Text size="14px">Time: {timeLeft}</Text>
+      <Text size="16px">Score: {score}</Text>
+      <Text size="16px">Time: {timeLeft}</Text>
       <S.Header>
-        <Text size="30px" bold>
+        <Text size="24px" bold>
           {decode(question)}
         </Text>
       </S.Header>
