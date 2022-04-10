@@ -7,12 +7,12 @@ import RadioButtonsGroup from "../RadioButtonsGroup";
 import * as S from "./style";
 
 const NewGame = ({
-  setStartQuiz,
-  setEndQuiz,
   setCurrentQuestion,
   score,
   setScore,
+  setStartQuiz,
   endQuiz,
+  setEndQuiz,
   numberOfQuestions,
   setNumberOfQuestions,
   difficulty,
@@ -36,6 +36,7 @@ const NewGame = ({
     if (endQuiz) {
       return (
         <div>
+          <Confetti width={width} height={height} />
           <Text size="30px" bold>
             You answered {score} questions out of {numberOfQuestions} correctly!
           </Text>
@@ -44,7 +45,6 @@ const NewGame = ({
               ? "Great Job!"
               : "Better Luck Next Time..."}
           </Text>
-          <Confetti width={width} height={height} />
         </div>
       );
     } else

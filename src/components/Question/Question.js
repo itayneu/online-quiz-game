@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { decode } from "he";
+import { toast } from "react-toastify";
 import Text from "../Text";
 import Button from "../Button";
 import * as S from "./style";
 
 const Question = ({
-  currentQuestion,
+  numberOfQuestions,
   question,
   answers,
-  numberOfQuestions,
   correctAnswer,
+  currentQuestion,
   setCurrentQuestion,
   score,
   setScore,
@@ -21,12 +19,11 @@ const Question = ({
   const [timeLeft, setTimeLeft] = useState(20);
 
   const nextQuestion = () => {
-    if (currentQuestion === numberOfQuestions - 1) {
-      setStartQuiz(false);
-      setEndQuiz(true);
-    }
-
     setTimeout(() => {
+      if (currentQuestion === numberOfQuestions - 1) {
+        setStartQuiz(false);
+        setEndQuiz(true);
+      }
       setCurrentQuestion((currentQuestion) => currentQuestion + 1);
       setTimeLeft(20);
     }, 750);
@@ -55,7 +52,7 @@ const Question = ({
 
   useEffect(() => {
     if (timeLeft === 0) {
-      toast.warn("Time is up", {
+      toast.warn(`Time is up, Correct answer is ${correctAnswer}`, {
         position: "top-left",
         autoClose: 1000,
         closeOnClick: true,
@@ -75,12 +72,11 @@ const Question = ({
 
   return (
     <S.Question>
-      <ToastContainer position="top-center" hideProgressBar={true} />
       <Text size="16px">Score: {score}</Text>
       <Text size="16px">Time: {timeLeft}</Text>
       <S.Header>
         <Text size="24px" bold>
-          {decode(question)}
+          {question}
         </Text>
       </S.Header>
       <S.Answers>
@@ -88,7 +84,7 @@ const Question = ({
           return (
             <S.Button>
               <Button
-                label={decode(answer)}
+                label={answer}
                 variant="outlined"
                 onClick={() => handleClick(answer)}
               />
